@@ -2,13 +2,13 @@ function ClassroomToCalendar() {
   //Get E-Mail
   var label = GmailApp.getUserLabelByName("Classroom");
   var threads = label.getThreads(); 
-  //check there are actually messages in the Gmail tagged with Classroom
+  //check there are actually messages in Gmail tagged with Classroom
   if (threads.length > 0 ) {
   
     //there are messages threads so process them
     for (var i = 0; i < threads.length; i++) {
       
-      //there a messages in the threads so process them
+      //there are messages in the threads so process them
       var messages=threads[i].getMessages();  
       for (var j = 0; j < messages.length; j++) {
         
@@ -34,7 +34,7 @@ function ClassroomToCalendar() {
         var regex5=/(.*)<no-reply/
         var teacher1=regex5.exec(teacher); 
         var teacher2=teacher1[1];
-        var detail=instruct + " for your teacher: " + teacher2 + "\n" + "\n" +web2 ;
+        var detail=instruct + " For your teacher: " + teacher2 + "\n" + "\n" + "Link to the task: " +web2 ;
         var classroomname = body.substr(0, body.indexOf(' has')); 
         
        
