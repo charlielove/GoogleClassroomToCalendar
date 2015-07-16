@@ -133,7 +133,7 @@ function getCalendarYear(calDayVal, calMonthVal) {
     {
 
       //if the day is before today then it's next year!
-      if (  calDayVal > calTodayDayVal ) {
+      if (  calDayVal < calTodayDayVal ) {
         return calTodayYearVal +1;
       } else {
       // it's this year if it is today onwards
