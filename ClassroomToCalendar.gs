@@ -45,11 +45,17 @@ function ClassroomToCalendar() {
             var calSplit = stringStartDate.split(" ");
             var calDay = calSplit[0]; //set the day for the calendar
             var calMonth = calSplit[1].substring(0,3); //read the three letter month and remove the last character "<"
-    
+            //is this US or EU format of date for Classroom? Check sting contents to find month
+            month_regx = /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/g;
+            if (!month_regx.test(calMonth)) { 
+              //then calMonth does contain not the month so switch it round because this is a US Classroom
+               var calDay = calSplit[1]; //set the day for the calendar
+               var calMonth = calSplit[0].substring(0,3); //read the three letter month and remove the last character "<"
+            }
             var calDayVal = parseInt(calDay);  //get the day as a value
             var calMonthVal = giveMonthValue(calMonth); //use the function to get the month
             var calYear = getCalendarYear(calDayVal, calMonthVal);  //calculate the correct year        
-            deadline = calDay + " " + calMonth + ", " + calYear;
+            deadline = String(calDayVal) + " " + calMonth + ", " + calYear;
         }
         
         //Add to Spreadsheet
@@ -104,7 +110,7 @@ function ClassroomToCalendar() {
 
 function giveMonthValue(month) {
   
-  var d = Date.parse(month + "1, 2015");
+  var d = Date.parse(month + " 1, 2015");
    if(!isNaN(d)){
       return new Date(d).getMonth() + 1;
    }
@@ -131,7 +137,6 @@ function getCalendarYear(calDayVal, calMonthVal) {
     else 
     //check this isn't the same month a year ahead, compare dates
     {
-
       //if the day is before today then it's next year!
       if (  calDayVal < calTodayDayVal ) {
         return calTodayYearVal +1;
