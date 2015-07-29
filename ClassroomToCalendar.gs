@@ -96,7 +96,7 @@ function ClassroomToCalendar() {
 
     // remove the label "Classroom" from the all threads in the inbox
     var label = GmailApp.getUserLabelByName("Classroom");
-    var threads = GmailApp.getInboxThreads();
+    var threads = GmailApp.search('label:Classroom');
     label.removeFromThreads(threads);
   }  
 }
