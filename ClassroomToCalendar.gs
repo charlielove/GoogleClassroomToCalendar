@@ -43,8 +43,8 @@ function ClassroomToCalendar() {
         {
             var stringStartDate = String(deadline);
             var calSplit = stringStartDate.split(" ");
-            var calDay = calSplit[0]; //set the day for the calendar
-            var calMonth = calSplit[1].substring(0,3); //read the three letter month and remove the last character "<"
+            var calDay = calSplit[1]; //set the day for the calendar US
+            var calMonth = calSplit[0].substring(0,3); //read the three letter month and remove the last character "<" US
             var calDayVal = parseInt(calDay);  //get the day as a value
             var calMonthVal = giveMonthValue(calMonth); //use the function to get the month
             var calYear = getCalendarYear(calDayVal, calMonthVal);  //calculate the correct year        
